@@ -28,6 +28,8 @@ public class DemoApplication {
 
     @GetMapping("/")
     public String hello() {
-        return "hello world!" ;
+        List<User> users = userDao.listUsers();
+        List<Video> videos = videoDao.listVideos();
+        return String.format("hello world! Videos: %s, Users: %s", videos.size(), users.size());
     }
 }
