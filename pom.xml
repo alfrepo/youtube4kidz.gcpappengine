@@ -39,9 +39,20 @@
 
     <dependencies>
 
+        <!--
+            Here it is important to exclude the tomcat dependency,
+            because it is not used in the appengine.
+            Otherwise there will be exceptions, because to Tomcat classes will be found in the managed environment.
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- disabled the tomcat, because the appengine environment uses jetty -->
