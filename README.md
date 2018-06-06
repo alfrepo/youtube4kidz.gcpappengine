@@ -16,3 +16,7 @@ Committing the app to the appengine.
 ```
 ./mvnw -DskipTests appengine:update
 ```
+
+
+## Datastore
+The data is stored using GCP-datastore. Here is the documentation for datastore: https://cloud.google.com/datastore/docs/how-to
