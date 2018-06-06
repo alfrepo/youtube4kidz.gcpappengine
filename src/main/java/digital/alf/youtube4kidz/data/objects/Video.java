@@ -2,13 +2,22 @@ package digital.alf.youtube4kidz.data.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.springframework.hateoas.ResourceSupport;
 
+/**
+ * Implements ResourceSupport, so that it can be used by the REST controller
+ */
 @Getter
 @Setter
-public class Video {
+public class Video  extends ResourceSupport {
+    public static final String GCPENTITY_NAME = "name";
     public static final String GCPENTITY_KIND = "video";
-    public static final String GCPENTITY_LINK = "link";
+    public static final String GCPENTITY_YOUTUBE_LINK = "youtubeLink";
+    public static final String GCPENTITY_AUTHOR = "author";
 
-    private long id;
-    private String link;
+    private long videoId;
+    private String name;
+    private String youtubeLink;
+    private String author;
 }

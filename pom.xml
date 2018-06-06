@@ -119,12 +119,20 @@
         <!--
             VERY IMPORTANT  the right version of Guava must be referenced here.
             Otherwise there will be a "NoSuchMethodException", because of transitive dependencies to older Guava libs.
-
         -->
         <dependency>                        <!-- Google Core Libraries for Java -->
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>  <!-- https://github.com/google/guava/wiki -->
             <version>23.0</version>
+        </dependency>
+
+
+        <!-- SERVICES -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas -->
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>0.24.0.RELEASE</version>
         </dependency>
 
     </dependencies>

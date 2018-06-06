@@ -1,6 +1,5 @@
 package digital.alf.youtube4kidz;
 
-import com.google.cloud.datastore.Datastore;
 import digital.alf.youtube4kidz.data.daos.UserDao;
 import digital.alf.youtube4kidz.data.daos.VideoDao;
 import digital.alf.youtube4kidz.data.objects.User;
@@ -29,7 +28,7 @@ public class DemoApplication {
     @GetMapping("/")
     public String hello() {
         List<User> users = userDao.listUsers();
-        List<Video> videos = videoDao.listVideos();
-        return String.format("hello world! Videos: %s, Users: %s", videos.size(), users.size());
+        List<Video> videos = videoDao.getVideos();
+        return String.format("hello world! VideoResource: %s, Users: %s", videos.size(), users.size());
     }
 }
