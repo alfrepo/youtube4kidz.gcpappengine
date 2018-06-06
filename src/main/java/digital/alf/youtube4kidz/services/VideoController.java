@@ -15,12 +15,12 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 @RestController
 public class VideoController {
 
-    public static final String URL_MAPPING = "videos";
+    public static final String CONTROLLER_URL_MAPPING = "videos";
 
     @Autowired
     VideoDao videoDao;
 
-    @RequestMapping(URL_MAPPING)
+    @RequestMapping(CONTROLLER_URL_MAPPING)
     //    public HttpEntity<VideoResource> video(
     public Resources<Video> video(
             @RequestParam(value = "author", required = false) String author) {
@@ -29,25 +29,25 @@ public class VideoController {
 
         // adding self links to the videos
         for (Video video : videos) {
-            Link link = linkTo(VideoController.class).slash(URL_MAPPING).slash(video.getVideoId()).withSelfRel();
+            Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).slash(video.getId()).withSelfRel();
             video.add(link);
         }
 
         // self link to all videos
-        Link link = linkTo(VideoController.class).slash(URL_MAPPING).withSelfRel();
+        Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).withSelfRel();
 
         Resources<Video> resources = new Resources<Video>(videos, link);
         return resources;
     }
 
-    @RequestMapping(URL_MAPPING + "/{videoId}")
+    @RequestMapping(CONTROLLER_URL_MAPPING + "/{videoId}")
     public @ResponseBody Resource getAttr(@PathVariable(value = "videoId") String videoId,
                 @RequestParam(required = false) String attr) {
         Long numericId = Long.parseLong(videoId);
         Video video =  videoDao.getById(numericId);
 
         // self link to all videos
-        Link link = linkTo(VideoController.class).slash(URL_MAPPING).slash(video.getVideoId()).withSelfRel();
+        Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).slash(videoId).withSelfRel();
         video.add(link);
 
         return new Resource<Video>(video);

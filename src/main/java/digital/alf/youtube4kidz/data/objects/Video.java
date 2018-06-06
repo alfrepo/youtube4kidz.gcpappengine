@@ -16,7 +16,7 @@ public class Video  extends ResourceSupport {
     public static final String GCPENTITY_YOUTUBE_LINK = "youtubeLink";
     public static final String GCPENTITY_AUTHOR = "author";
 
-    private long videoId;
+    private long entityId;
     private String name;
     private String youtubeLink;
     private String author;

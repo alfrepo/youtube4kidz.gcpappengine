@@ -27,6 +27,12 @@ public class DemoApplication {
 
     @GetMapping("/")
     public String hello() {
+        Video v = new Video();
+        v.setAuthor("Me");
+        v.setName("Me");
+        v.setYoutubeLink("Link");
+        videoDao.createVideo(v);
+
         List<User> users = userDao.listUsers();
         List<Video> videos = videoDao.getVideos();
         return String.format("hello world! VideoResource: %s, Users: %s", videos.size(), users.size());

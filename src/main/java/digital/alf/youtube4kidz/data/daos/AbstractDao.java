@@ -16,7 +16,7 @@ import java.io.InputStream;
 @Component
 abstract class AbstractDao {
 
-    public static final String KEY_PROPERTY = "__key__";
+    public static final String GCP_DATASTORE_KEY_PROPERTY = "__key__";
 
     @Autowired
     ConfigProperties configProperties;
