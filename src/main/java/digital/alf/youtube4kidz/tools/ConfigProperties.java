@@ -1,4 +1,4 @@
-package digital.alf.youtube4kidz.properties;
+package digital.alf.youtube4kidz.tools;
 
 import lombok.Getter;
 import lombok.Setter;

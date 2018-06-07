@@ -1,4 +1,4 @@
-package digital.alf.youtube4kidz.data.objects;
+package digital.alf.youtube4kidz.user;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package digital.alf.youtube4kidz.services;
+package digital.alf.youtube4kidz.user;
 
 import org.springframework.stereotype.Service;
 

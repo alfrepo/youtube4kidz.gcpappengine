@@ -1,8 +1,8 @@
-package digital.alf.youtube4kidz.data.daos;
+package digital.alf.youtube4kidz.video;
 
 import com.google.cloud.datastore.*;
-import digital.alf.youtube4kidz.data.objects.Video;
-import digital.alf.youtube4kidz.properties.ConfigProperties;
+import digital.alf.youtube4kidz.data.AbstractDao;
+import digital.alf.youtube4kidz.tools.ConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;

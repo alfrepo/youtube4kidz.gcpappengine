@@ -1,9 +1,9 @@
 package digital.alf.youtube4kidz;
 
-import digital.alf.youtube4kidz.data.daos.UserDao;
-import digital.alf.youtube4kidz.data.daos.VideoDao;
-import digital.alf.youtube4kidz.data.objects.User;
-import digital.alf.youtube4kidz.data.objects.Video;
+import digital.alf.youtube4kidz.user.UserDao;
+import digital.alf.youtube4kidz.video.VideoDao;
+import digital.alf.youtube4kidz.user.User;
+import digital.alf.youtube4kidz.video.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

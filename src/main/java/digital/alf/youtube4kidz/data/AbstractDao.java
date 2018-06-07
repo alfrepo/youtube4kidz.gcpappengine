@@ -1,20 +1,19 @@
-package digital.alf.youtube4kidz.data.daos;
+package digital.alf.youtube4kidz.data;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.datastore.*;
-import digital.alf.youtube4kidz.data.objects.User;
-import digital.alf.youtube4kidz.properties.ConfigProperties;
-import digital.alf.youtube4kidz.services.UserService;
+import digital.alf.youtube4kidz.user.User;
+import digital.alf.youtube4kidz.tools.ConfigProperties;
+import digital.alf.youtube4kidz.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContext;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 @Component
-abstract class AbstractDao {
+public abstract class AbstractDao {
 
     public static final String GCP_DATASTORE_KEY_PROPERTY = "__key__";
 

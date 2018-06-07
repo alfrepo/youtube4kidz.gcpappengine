@@ -1,7 +1,5 @@
-package digital.alf.youtube4kidz.controller;
+package digital.alf.youtube4kidz.video;
 
-import digital.alf.youtube4kidz.data.daos.VideoDao;
-import digital.alf.youtube4kidz.data.objects.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;

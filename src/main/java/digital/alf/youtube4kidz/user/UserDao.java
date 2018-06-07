@@ -1,7 +1,7 @@
-package digital.alf.youtube4kidz.data.daos;
+package digital.alf.youtube4kidz.user;
 
 import com.google.cloud.datastore.*;
-import digital.alf.youtube4kidz.data.objects.User;
+import digital.alf.youtube4kidz.data.AbstractDao;
 import org.springframework.stereotype.Component;
 import com.google.cloud.datastore.Entity;
 
