@@ -1,4 +1,4 @@
-package digital.alf.youtube4kidz.services;
+package digital.alf.youtube4kidz.controller;
 
 import digital.alf.youtube4kidz.data.daos.VideoDao;
 import digital.alf.youtube4kidz.data.objects.Video;
@@ -15,13 +15,12 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 @RestController
 public class VideoController {
 
-    public static final String CONTROLLER_URL_MAPPING = "videos";
+    public static final String CONTROLLER_URL_MAPPING = "/api/videos";
 
     @Autowired
     VideoDao videoDao;
 
     @RequestMapping(CONTROLLER_URL_MAPPING)
-    //    public HttpEntity<VideoResource> video(
     public Resources<Video> video(
             @RequestParam(value = "author", required = false) String author) {
 
@@ -29,7 +28,7 @@ public class VideoController {
 
         // adding self links to the videos
         for (Video video : videos) {
-            Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).slash(video.getId()).withSelfRel();
+            Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).slash(video.getEntityId()).withSelfRel();
             video.add(link);
         }
 
