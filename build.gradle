@@ -1,0 +1,79 @@
+buildscript {      // Configuration for building
+    repositories {
+        jcenter()      // Bintray's repository - a fast Maven Central mirror & more
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:+'
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
+repositories {   // repositories for JARs you access in your code
+    maven {
+        url 'https://maven-central.storage.googleapis.com'             // Google's mirror of Maven Central
+    }
+
+//maven {
+//  url 'https://oss.sonatype.org/content/repositories/snapshots' // SNAPSHOT repository if needed
+//}
+
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+apply plugin: 'com.google.cloud.tools.appengine'
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    providedCompile 'com.google.appengine:appengine:+'
+// Add your dependencies here.
+
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.2.RELEASE') {
+        exclude(module: 'spring-boot-starter-tomcat')
+    }
+    compile group: 'com.google.cloud', name: 'google-cloud-datastore', version: '1.29.0'
+    compile group: 'com.google.auth', name: 'google-auth-library-oauth2-http', version: '0.9.1'
+    compile group: 'com.google.guava', name: 'guava', version: '23.0'
+    compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.0.2.RELEASE'
+    compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.24.0.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.2.RELEASE'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
+}
+
+gretty {
+    httpPort = 8080
+    contextPath = '/'
+    servletContainer = 'jetty9'  // What App Engine Flexible uses
+}
+
+appengine {
+
+    deploy {   // deploy configuration
+        stopPreviousVersion = true  // default - stop the current version
+        promote = true              // default - & make this the current version
+    }
+
+}
+
+group = 'com.example.appengine'   // Generated output GroupId
+version = '1.0-SNAPSHOT'          // Version in generated output
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources", "src/main/webapp"]
+        }
+    }
+}
