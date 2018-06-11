@@ -30,17 +30,31 @@ apply plugin: 'com.google.cloud.tools.appengine'
 dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile 'com.google.appengine:appengine:+'
-// Add your dependencies here.
 
+    /*
+        Enables the annotation @ConfigProperties to load the properties
+
+        Here it is important to exclude the tomcat dependency, because it is not used in the appengine.
+        Otherwise there will be exceptions, because to Tomcat classes will be found in the managed environment.
+    */
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.2.RELEASE') {
         exclude(module: 'spring-boot-starter-tomcat')
     }
+
+    // As storage use Google Cloud Datastore. This is the lib.
     compile group: 'com.google.cloud', name: 'google-cloud-datastore', version: '1.29.0'
     compile group: 'com.google.auth', name: 'google-auth-library-oauth2-http', version: '0.9.1'
+
+    /*
+            VERY IMPORTANT  the right version of Guava must be referenced here.
+            Otherwise there will be a "NoSuchMethodException", because of transitive dependencies to older Guava libs.
+    */
     compile group: 'com.google.guava', name: 'guava', version: '23.0'
     compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.0.2.RELEASE'
     compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.24.0.RELEASE'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.2.RELEASE'
+
+    /* instead of tomcat enable the servlets */
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
 }
@@ -75,5 +89,49 @@ sourceSets {
         resources {
             srcDirs = ["src/main/resources", "src/main/webapp"]
         }
+    }
+}
+
+
+// ANGULAR integration
+
+def webappDir = "$projectDir/src/main/angular"
+
+processResources {
+    dependsOn "buildAngular"
+}
+
+
+task installAngular(type:Exec) {
+    workingDir "$webappDir"
+    inputs.dir "$webappDir"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+        commandLine "npm.cmd", "install"
+    } else {
+        commandLine "npm", "install"
+    }
+}
+
+task buildAngular(type:Exec) {
+    // installAngular should be run prior to this task
+    dependsOn "installAngular"
+    workingDir "$webappDir"
+    inputs.dir "$webappDir"
+    // Add task to the standard build group
+    group = BasePlugin.BUILD_GROUP
+    // ng doesn't exist as a file in windows -> ng.cmd
+    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+        commandLine "ng.cmd", "build"
+    } else {
+        commandLine "ng", "build"
+    }
+}
+
+// adds static angular-generated-files, to the "classes" folder in WEB-INF, inside the war
+war {
+    from("$webappDir/dist/") {
+        include '**/*.*'
+        into '/WEB-INF/classes/'
     }
 }

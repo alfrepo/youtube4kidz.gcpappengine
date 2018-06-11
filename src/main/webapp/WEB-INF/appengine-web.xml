@@ -3,4 +3,9 @@
   <version>1</version>
   <threadsafe>true</threadsafe>
   <runtime>java8</runtime>
+  <static-files>
+    <include path="/static/*">
+      <http-header name="Access-Control-Allow-Origin" value="*" />
+    </include>
+  </static-files>
 </appengine-web-app>
