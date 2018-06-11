@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 public class VideoController {
@@ -18,8 +20,8 @@ public class VideoController {
     @Autowired
     VideoDao videoDao;
 
-    @RequestMapping(CONTROLLER_URL_MAPPING)
-    public Resources<Video> video(
+    @RequestMapping(method = GET, value = CONTROLLER_URL_MAPPING)
+    public @ResponseBody ResponseEntity<?> video(
             @RequestParam(value = "author", required = false) String author) {
 
         List<Video> videos = videoDao.getVideos();
@@ -34,7 +36,7 @@ public class VideoController {
         Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).withSelfRel();
 
         Resources<Video> resources = new Resources<Video>(videos, link);
-        return resources;
+        return ResponseEntity.ok(videos);
     }
 
     @RequestMapping(CONTROLLER_URL_MAPPING + "/{videoId}")
