@@ -43,7 +43,7 @@ The data is stored using GCP-datastore. Here is the documentation for datastore:
 # Frontend
 The frontend is written in angular.
 
-# Starting only the frontend
+## Starting only the frontend
 To start the frontend only, on a port 4444 - you shoud use angular cli.
 The frontend applicaiton would update automatically on every change.
 This mode is very useful for FE development.
