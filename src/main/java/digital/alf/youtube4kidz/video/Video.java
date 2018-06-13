@@ -13,11 +13,11 @@ import org.springframework.hateoas.ResourceSupport;
 public class Video  extends ResourceSupport {
     public static final String GCPENTITY_NAME = "name";
     public static final String GCPENTITY_KIND = "video";
-    public static final String GCPENTITY_YOUTUBE_LINK = "youtubeLink";
+    public static final String GCPENTITY_YOUTUBE_ID = "youtubeId";
     public static final String GCPENTITY_AUTHOR = "author";
 
     private long entityId;
     private String name;
-    private String youtubeLink;
+    private String youtubeId;
     private String author;
 }

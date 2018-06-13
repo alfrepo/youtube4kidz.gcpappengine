@@ -24,7 +24,7 @@ public class VideoDao extends AbstractDao {
                 .set(Video.GCPENTITY_NAME, video.getName())           // Add Property ("author", book.getAuthor())
                 .set(Video.GCPENTITY_AUTHOR, video.getAuthor())
                 .set(Video.GCPENTITY_KIND, Video.GCPENTITY_KIND)
-                .set(Video.GCPENTITY_YOUTUBE_LINK, video.getYoutubeLink())
+                .set(Video.GCPENTITY_YOUTUBE_ID, video.getYoutubeId())
                 .build();
         Entity videoEntity = getDataStore().add(incompleteUserEntity);
         return videoEntity.getKey().getId();
@@ -68,7 +68,7 @@ public class VideoDao extends AbstractDao {
     private Video entityToVideo(Entity e) {
         Video v = new Video();
         v.setEntityId(e.getKey().getId());
-        v.setYoutubeLink(e.getString(Video.GCPENTITY_YOUTUBE_LINK));
+        v.setYoutubeId(e.getString(Video.GCPENTITY_YOUTUBE_ID));
         v.setAuthor(e.getString(Video.GCPENTITY_AUTHOR));
         v.setName(e.getString(Video.GCPENTITY_NAME));
         return v;
