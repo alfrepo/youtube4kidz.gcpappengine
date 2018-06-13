@@ -33,14 +33,14 @@ public class VideoController {
         }
 
         // self link to all videos
-        Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).withSelfRel();
+//        Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).withSelfRel();
+//        Resources<Video> resources = new Resources<Video>(videos, link);
 
-        Resources<Video> resources = new Resources<Video>(videos, link);
         return ResponseEntity.ok(videos);
     }
 
-    @RequestMapping(CONTROLLER_URL_MAPPING + "/{videoId}")
-    public @ResponseBody Resource getAttr(@PathVariable(value = "videoId") String videoId,
+    @RequestMapping(method = GET, value = CONTROLLER_URL_MAPPING + "/{videoId}")
+    public @ResponseBody ResponseEntity<?> getAttr(@PathVariable(value = "videoId") String videoId,
                 @RequestParam(required = false) String attr) {
         Long numericId = Long.parseLong(videoId);
         Video video =  videoDao.getById(numericId);
@@ -49,6 +49,6 @@ public class VideoController {
         Link link = linkTo(VideoController.class).slash(CONTROLLER_URL_MAPPING).slash(videoId).withSelfRel();
         video.add(link);
 
-        return new Resource<Video>(video);
+        return ResponseEntity.ok(video);
     }
 }
