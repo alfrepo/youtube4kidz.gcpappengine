@@ -1,17 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
 
 <app-video-overlay *ngIf="isVideoSelected()"></app-video-overlay>
 
+<div class="row">
+  <div *ngFor="let t of temp(columnAmount).fill(); let i = index; " class="column">
+
+    <app-video-item *ngFor="let video of videos.slice(columnLenght*i,columnLenght*i + columnLenght);"
+                    [youtubeId]="video.youtubeId"
+                    (click)="selectVideo(video)">
+    </app-video-item>
+
+  </div>
+</div>
+
+<!--
 <div>
   <app-video-item *ngFor="let video of videos"
                   [youtubeId]="video.youtubeId"
                   (click)="selectVideo(video)">
   </app-video-item>
 </div>
-
+-->
 

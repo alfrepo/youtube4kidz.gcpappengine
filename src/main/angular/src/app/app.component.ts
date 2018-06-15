@@ -12,7 +12,13 @@ import {VideoOverlayService} from "./video-overlay/video-overlay.service";
 export class AppComponent implements OnInit {
 
   title = 'youtube4kidz';
-  videos: Video[]
+  videos: Video[] = []
+
+  temp = Array;
+  columnAmount = 3
+  columnLenght = Math.ceil(this.videos.length / this.columnAmount)
+
+
 
   BACKEND_URL: string = environment.backendUrl + ':' + environment.backendPort + '/';
 
@@ -28,11 +34,13 @@ export class AppComponent implements OnInit {
           console.error("An error occured, when tried to load the videos")
         },
         () => {
+        //TODO fix that call
+          this.columnLenght = Math.ceil(this.videos.length / this.columnAmount)
           console.log("Finished loading the videos: ")
         })
   }
 
-  isVideoSelected():boolean{
+  isVideoSelected(): boolean {
     return this.videoOverlayService.isVideoSelected();
   }
 
