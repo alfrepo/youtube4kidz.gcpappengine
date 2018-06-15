@@ -6,19 +6,8 @@
   <div *ngFor="let t of temp(columnAmount).fill(); let i = index; " class="column">
 
     <app-video-item *ngFor="let video of videos.slice(columnLenght*i,columnLenght*i + columnLenght);"
-                    [youtubeId]="video.youtubeId"
-                    (click)="selectVideo(video)">
+                    [video]="video">
     </app-video-item>
 
   </div>
 </div>
-
-<!--
-<div>
-  <app-video-item *ngFor="let video of videos"
-                  [youtubeId]="video.youtubeId"
-                  (click)="selectVideo(video)">
-  </app-video-item>
-</div>
--->
-

@@ -44,8 +44,4 @@ export class AppComponent implements OnInit {
     return this.videoOverlayService.isVideoSelected();
   }
 
-  private selectVideo(video: Video): void {
-    this.videoOverlayService.selectVideo(video)
-  }
-
 }

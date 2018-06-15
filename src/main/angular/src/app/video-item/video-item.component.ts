@@ -1,17 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Video} from "../video/video";
+import {VideoService} from "../video/video.service";
+import {VideoOverlayService} from "../video-overlay/video-overlay.service";
 
 @Component({
   selector: 'app-video-item',
   templateUrl: './video-item.component.html',
   styleUrls: ['./video-item.component.css']
 })
-export class VideoItemComponent implements OnInit {
+export class VideoItemComponent{
 
-  @Input() youtubeId: string // <-- added Input annotation
+  @Input() video: Video  // <-- added Input annotation
 
-  constructor() { }
+  constructor(private videoOverlayService: VideoOverlayService) {
+  }
 
   ngOnInit() {
+  }
+
+  private selectVideo(video: Video): void {
+    this.videoOverlayService.selectVideo(video)
   }
 
 }
