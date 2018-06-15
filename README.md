@@ -16,6 +16,12 @@ Then it was converted to gradle.
   Building is not part of the appengine-start process. Otherwise you will receive a ClassNotFound / MethodNotFound
 - Then start project via Run “Google AppEngine Dev”
 
+## Building the whole app - backend and frontend
+```
+./gradlew build
+```
+
+
 ## Running the app engine locally with gradle
 ```
 ./gradlew appengineStart
@@ -32,3 +38,16 @@ Sending the app to the appengine.
 
 ## Datastore
 The data is stored using GCP-datastore. Here is the documentation for datastore: https://cloud.google.com/datastore/docs/how-to
+
+
+# Frontend
+The frontend is written in angular.
+
+## Starting only the frontend
+To start the frontend only, on a port 4444 - you shoud use angular cli.
+The frontend applicaiton would update automatically on every change.
+This mode is very useful for FE development.
+
+```
+ng serve
+```
