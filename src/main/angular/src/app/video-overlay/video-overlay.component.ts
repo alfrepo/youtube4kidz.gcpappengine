@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {VideoOverlayService} from "./video-overlay.service";
 import {DomSanitizer} from "@angular/platform-browser";
-import {sanitizeHtml} from "@angular/platform-browser/src/security/html_sanitizer";
 
 @Component({
   selector: 'app-video-overlay',
