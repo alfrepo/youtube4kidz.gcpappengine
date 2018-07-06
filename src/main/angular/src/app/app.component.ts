@@ -16,9 +16,7 @@ export class AppComponent implements OnInit {
 
   temp = Array;
   columnAmount = 3
-  columnLenght = Math.ceil(this.videos.length / this.columnAmount)
-
-
+  columnLenght = 0
 
   BACKEND_URL: string = environment.backendUrl + ':' + environment.backendPort + '/';
 
@@ -34,7 +32,6 @@ export class AppComponent implements OnInit {
           console.error("An error occured, when tried to load the videos")
         },
         () => {
-        //TODO fix that call
           this.columnLenght = Math.ceil(this.videos.length / this.columnAmount)
           console.log("Finished loading the videos: ")
         })
