@@ -18,7 +18,7 @@ export class VideoItemComponent{
   ngOnInit() {
   }
 
-  private selectVideo(video: Video): void {
+  selectVideo(video: Video): void {
     this.videoOverlayService.selectVideo(video)
   }
 
