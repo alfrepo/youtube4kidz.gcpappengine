@@ -3,7 +3,7 @@
 <app-video-overlay *ngIf="isVideoSelected()"></app-video-overlay>
 
 <div class="row">
-  <div *ngFor="let t of temp(columnAmount).fill(); let i = index; " class="column">
+  <div *ngFor="let t of temp(columnAmount).fill(); let i = index" class="column">
 
     <app-video-item *ngFor="let video of videos.slice(columnLenght*i,columnLenght*i + columnLenght);"
                     [video]="video">
