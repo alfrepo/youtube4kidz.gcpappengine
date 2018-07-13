@@ -35,6 +35,25 @@ Sending the app to the appengine.
 ./gradlew appengineDeploy
 ```
 
+## Deploy to the app engine using prod environment
+Setting the environment to prod.
+It will be causing the usage of the `environment.prod.ts` where expecially the backend URL is defined.
+
+```
+./gradlew appengineDeploy -Penvironment=prod
+```
+
+It is this part of the Gradle script interpreting the parameter
+```
+    // use environment if passed via "gradlew appengineDeploy -Penvironment=prod"
+    if ( project.hasProperty("environment") ) {
+        commandLine cmd, "build", "--environment", project.environment
+    }else{
+        commandLine cmd, "build"
+    }
+```
+
+
 
 ## Datastore
 The data is stored using GCP-datastore. Here is the documentation for datastore: https://cloud.google.com/datastore/docs/how-to
