@@ -9,6 +9,7 @@ import {VideoService} from "./video/video.service";
 import {HttpClientModule} from "@angular/common/http";
 import {VideoOverlayComponent} from './video-overlay/video-overlay.component';
 import {VideoOverlayService} from "./video-overlay/video-overlay.service";
+import {ToolService} from "./tools/tool.service";
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import {VideoOverlayService} from "./video-overlay/video-overlay.service";
   imports: [
     BrowserModule, RouterModule, HttpClientModule
   ],
-  providers: [VideoService, VideoOverlayService],
+  providers: [VideoService, VideoOverlayService, ToolService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

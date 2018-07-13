@@ -70,6 +70,8 @@ appengine {
     deploy {   // deploy configuration
         stopPreviousVersion = true  // default - stop the current version
         promote = true              // default - & make this the current version
+        version = 'GCLOUD_CONFIG'   // to have gcloud generate a version for you
+        project = 'GCLOUD_CONFIG'   // to use project from gcloud config
     }
 
 }
@@ -120,12 +122,35 @@ task buildAngular(type:Exec) {
     inputs.dir "$webappDir"
     // Add task to the standard build group
     group = BasePlugin.BUILD_GROUP
+
+    def list = []
+
     // ng doesn't exist as a file in windows -> ng.cmd
     if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
-        commandLine "ng.cmd", "build"
+        list << "ng.cmd"
+    } else {
+        list << "ng"
+    }
+
+    list << "build"
+
+    // use environment if passed via "gradlew appengineDeploy -Penvironment=prod"
+    if ( project.hasProperty("environment") ) {
+        list << "--environment"
+        list << "$environment"
+    }
+
+    // execute the command
+    commandLine(list)
+
+    // ng doesn't exist as a file in windows -> ng.cmd
+    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+        commandLine "ng.cmd", "build", "--environment", "prod"
     } else {
         commandLine "ng", "build"
     }
+
+
 }
 
 // adds static angular-generated-files, to the "classes" folder in WEB-INF, inside the war

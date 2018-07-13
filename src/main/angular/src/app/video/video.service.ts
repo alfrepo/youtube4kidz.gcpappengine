@@ -3,17 +3,16 @@ import {Observable} from "rxjs/Observable";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {environment} from "../../environments/environment";
+import {ToolService} from "../tools/tool.service";
 
 @Injectable()
 export class VideoService {
 
-  BACKEND_VIDEO_SERVICE_URL: string = environment.backendUrl + ':' + environment.backendPort + '/api/videos/';
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toolService: ToolService) {
   }
 
   public getAll<T>(): Observable<{} | T> {
-    return this.http.get<T>(this.BACKEND_VIDEO_SERVICE_URL)
+    return this.http.get<T>(this.toolService.backendUrl() + '/api/videos/')
       .pipe(catchError(this.handleError)
       );
   }

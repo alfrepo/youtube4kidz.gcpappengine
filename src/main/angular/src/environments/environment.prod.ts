@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: "http://localhost",
-  backendPort: 8080
+  backendUrl: "https://youtubekidz-205013.appspot.com",
+  backendPort: ""
 };

@@ -18,8 +18,6 @@ export class AppComponent implements OnInit {
   columnAmount = 3
   columnLenght = 0
 
-  BACKEND_URL: string = environment.backendUrl + ':' + environment.backendPort + '/';
-
   constructor(private videoService: VideoService,
               private videoOverlayService: VideoOverlayService) {
   }
