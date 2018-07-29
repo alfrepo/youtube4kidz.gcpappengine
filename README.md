@@ -68,5 +68,6 @@ The frontend applicaiton would update automatically on every change.
 This mode is very useful for FE development.
 
 ```
+cd .\src\main\angular
 ng serve
 ```
