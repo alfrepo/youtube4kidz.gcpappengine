@@ -65,13 +65,14 @@ gretty {
     servletContainer = 'jetty9'  // What App Engine Flexible uses
 }
 
+// the deploy properties are listed here: https://cloud.google.com/appengine/docs/flexible/java/gradle-reference
 appengine {
 
     deploy {   // deploy configuration
         stopPreviousVersion = true  // default - stop the current version
         promote = true              // default - & make this the current version
         version = 'GCLOUD_CONFIG'   // to have gcloud generate a version for you
-        project = 'GCLOUD_CONFIG'   // to use project from gcloud config
+        projectId = 'GCLOUD_CONFIG' // to use project from gcloud config
     }
 
 }
@@ -101,6 +102,10 @@ def webappDir = "$projectDir/src/main/angular"
 
 processResources {
     dependsOn "buildAngular"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0' //version required
 }
 
 
