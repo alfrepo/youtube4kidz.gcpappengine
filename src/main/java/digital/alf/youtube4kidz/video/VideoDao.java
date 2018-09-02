@@ -20,11 +20,18 @@ public class VideoDao extends AbstractDao {
         KeyFactory keyFactory = getDataStore().newKeyFactory().setKind(Video.GCPENTITY_KIND).addAncestor(getCurrentUserPathElement());
         IncompleteKey key = keyFactory.newKey();
 
+        // interface switch from String to Value
+        List<Value<String>> ls = new ArrayList<>();
+        for(String tag:video.getTags()){
+            ls.add(new StringValue(tag));
+        }
+
         FullEntity<IncompleteKey> incompleteUserEntity = Entity.newBuilder(key)  // Create the Entity
                 .set(Video.GCPENTITY_NAME, video.getName())           // Add Property ("author", book.getAuthor())
                 .set(Video.GCPENTITY_AUTHOR, video.getAuthor())
                 .set(Video.GCPENTITY_KIND, Video.GCPENTITY_KIND)
                 .set(Video.GCPENTITY_YOUTUBE_ID, video.getYoutubeId())
+                .set(Video.GCPENTITY_TAGS,ls)
                 .build();
         Entity videoEntity = getDataStore().add(incompleteUserEntity);
         return videoEntity.getKey().getId();
@@ -71,6 +78,13 @@ public class VideoDao extends AbstractDao {
         v.setYoutubeId(e.getString(Video.GCPENTITY_YOUTUBE_ID));
         v.setAuthor(e.getString(Video.GCPENTITY_AUTHOR));
         v.setName(e.getString(Video.GCPENTITY_NAME));
+
+        List<Value<String>> tagValues = e.getList(Video.GCPENTITY_TAGS);
+        List<String> tags = new ArrayList<>();
+        for(Value<String> tagValue:tagValues){
+            tags.add(tagValue.get());
+        }
+        v.setTags(tags);
         return v;
     }
 }
