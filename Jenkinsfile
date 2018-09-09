@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh './gradlew build'
+        sh 'sudo ./gradlew build'
       }
     }
     stage('Deploy') {
