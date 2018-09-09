@@ -8,7 +8,11 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh './gradlew build'
+        sh '''whoami
+gcloud config set project youtubekidz-205013
+gcloud config list
+
+./gradlew build'''
       }
     }
     stage('Deploy') {
