@@ -4,49 +4,13 @@
   box-sizing: border-box;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-
-  background-color: black;
+#main{
+  width: 100%;
+  heigh: 100%;
 }
 
-/* Create four equal columns that sits next to each other */
-.column {
-  padding: 0 4px;
-  flex: 25%;
-  max-width: 25%;
+.app-video-item {
+  float: left;
+  padding-right: 25px;
 }
 
-.column img {
-  margin-top: 8px;
-  vertical-align: middle;
-}
-
-
-/* Responsive layout - makes a 3 column-layout  */
-@media screen and (max-width: 1920px) {
-  .column {
-    flex: 33%;
-    max-width: 33%;
-  }
-}
-
-
-/* Responsive layout - makes a 2 column-layout  */
-@media screen and (max-width: 1440px) {
-  .column {
-    flex: 50%;
-    max-width: 50%;
-  }
-}
-
-
-/* Responsive layout - makes a 1 column-layout  */
-@media screen and (max-width: 960px)  {
-  .column {
-    flex: 100%;
-    max-width: 100%;
-  }
-}

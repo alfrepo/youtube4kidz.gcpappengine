@@ -14,10 +14,6 @@ export class AppComponent implements OnInit {
   title = 'youtube4kidz';
   videos: Video[] = []
 
-  temp = Array;
-  columnAmount = 3
-  columnLenght = 0
-
   constructor(private videoService: VideoService,
               private videoOverlayService: VideoOverlayService) {
   }
@@ -30,7 +26,6 @@ export class AppComponent implements OnInit {
           console.error("An error occured, when tried to load the videos")
         },
         () => {
-          this.columnLenght = Math.ceil(this.videos.length / this.columnAmount)
           console.log("Finished loading the videos: ")
         })
   }
