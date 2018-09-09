@@ -8,7 +8,8 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'sudo ./gradlew build'
+        sh '''whoami
+'''
       }
     }
     stage('Deploy') {
