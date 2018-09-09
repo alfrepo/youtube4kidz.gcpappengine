@@ -25,9 +25,8 @@
 /.nb-gradle/
 /src/main/webapp/WEB-INF/keys/YoutubeKidz-8bf46bba43f7.json
 out
-gradle
-.gradle
 .idea
 build
 classes
 /package-lock.json
+.gradle
