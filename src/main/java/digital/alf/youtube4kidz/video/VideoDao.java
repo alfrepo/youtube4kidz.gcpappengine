@@ -9,9 +9,13 @@ import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Component
 public class VideoDao extends AbstractDao {
+
+    private final Logger logger = Logger.getLogger(VideoDao.class.getName());
 
     @Autowired
     ConfigProperties configProperties;
@@ -67,7 +71,11 @@ public class VideoDao extends AbstractDao {
     private List<Video> entitiesToVideos(QueryResults<Entity> entities) {
         List<Video> l = new ArrayList<>();
         entities.forEachRemaining((Entity e) -> {
-            l.add(entityToVideo(e));
+            try {
+                l.add(entityToVideo(e));
+            }catch (Throwable t){
+                logger.log(Level.WARNING, "Failed to parse entity to video: {0}", e.toString());
+            }
         });
         return l;
     }
