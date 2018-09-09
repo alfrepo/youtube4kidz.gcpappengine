@@ -8,8 +8,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh '''whoami
-'''
+        sh './gradlew build'
       }
     }
     stage('Deploy') {
