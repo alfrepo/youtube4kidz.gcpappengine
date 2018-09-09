@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'echo "build"'
+        sh './gradlew build'
       }
     }
     stage('Deploy') {
